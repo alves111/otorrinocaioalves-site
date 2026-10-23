@@ -152,6 +152,7 @@ details.faq .faq-a { padding: 0 0 14px 22px; font-size: 14.5px; color: var(--tex
 .banda-stats { background: var(--petrol-escuro); margin-top: 34px; padding: 34px 20px 30px; }
 .banda-stats .estudos .stat { background: rgba(243,237,226,.06); border-color: rgba(243,237,226,.16); }
 .banda-stats .stat .lbl { color: #D8E2E6; }
+.banda-stats .stat .num { color: var(--copper-claro); }
 .banda-stats .fonte-nota { color: #8FA6B0; }
 .banda-stats h2 { color: var(--sand); font-family: var(--font-titulo); font-size: 28px; text-align: center; margin: 0 0 18px; font-weight: 600; }
 .banda-in { max-width: 980px; margin: 0 auto; }
