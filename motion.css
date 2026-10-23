@@ -1,0 +1,14 @@
+/* Acabamento discreto aprovado: sem alterar fontes ou layout. */
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ready .hero-cta, .motion-ready .btn, .motion-ready nav a, .motion-ready .hamburger { transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
+  .motion-ready .hero-cta:hover, .motion-ready .cta-menu:hover { transform: translateY(-2px); box-shadow: 0 6px 16px #173c4a24; }
+  .motion-ready .motion-reveal { opacity: 0; transform: translateY(12px); transition: opacity 420ms ease, transform 420ms ease; }
+  .motion-ready .motion-reveal.motion-seen { opacity: 1; transform: none; }
+  .motion-ready .mobile-menu.motion-open { animation: menuIn 180ms ease-out both; }
+  @keyframes menuIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  .motion-reveal { opacity: 1 !important; transform: none !important; }
+  .motion-ready *, .motion-ready *::before, .motion-ready *::after { animation: none !important; transition: none !important; }
+}
