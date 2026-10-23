@@ -38,19 +38,19 @@
     if (!s || !c) return;
     s.addEventListener('click', function (e) {
       e.preventDefault();
-      if (d._anim) d._anim.cancel();
+      c.getAnimations().forEach(function (a) { a.cancel(); });
       var hAtual = c.getBoundingClientRect().height;
       c.style.overflow = 'hidden';
-      var ease = 'cubic-bezier(.4,0,.2,1)', dur = 240;
+      var ease = 'cubic-bezier(.4,0,.2,1)', dur = 240, a;
       if (d.open && !d._closing) {
         d._closing = true;
-        d._anim = c.animate([{ height: hAtual + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: dur, easing: ease });
-        d._anim.onfinish = function () { d.open = false; d._closing = false; d._anim = null; c.style.overflow = ''; };
+        a = c.animate([{ height: hAtual + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: dur, easing: ease });
+        a.onfinish = function () { d.open = false; d._closing = false; c.style.overflow = ''; a.cancel(); };
       } else {
         d.open = true; d._closing = false;
         var hFim = c.offsetHeight;
-        d._anim = c.animate([{ height: hAtual + 'px', opacity: .3 }, { height: hFim + 'px', opacity: 1 }], { duration: dur, easing: ease });
-        d._anim.onfinish = function () { d._anim = null; c.style.overflow = ''; };
+        a = c.animate([{ height: hAtual + 'px', opacity: .3 }, { height: hFim + 'px', opacity: 1 }], { duration: dur, easing: ease });
+        a.onfinish = function () { c.style.overflow = ''; a.cancel(); };
       }
     });
   });
