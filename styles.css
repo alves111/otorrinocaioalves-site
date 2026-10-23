@@ -48,7 +48,7 @@ nav.menu a.cta-menu:hover { background: var(--copper-claro); }
 .mobile-menu details.mm-g[open] summary::after { content: "\2212"; }
 .mobile-menu details.mm-g a { padding-left: 16px; }
 .mobile-menu details.mm-g .mm-sec { padding-left: 16px; }
-.mobile-menu a.cta-mm { color: #fff; background: var(--copper); border-radius: 8px; text-align: center; margin-top: 10px; padding: 12px; }
+.mobile-menu a.mm-agendar { font-weight: 600; color: var(--copper-claro); }
 
 /* ---------- hero (home) ---------- */
 .hero { background: var(--petrol); color: var(--sand); text-align: center; padding: 56px 24px 52px; display: flex; flex-direction: column; align-items: center; }

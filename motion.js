@@ -29,3 +29,27 @@
     btn.onclick = () => { const open = menu.style.display !== 'block'; menu.style.display = open ? 'block' : 'none'; menu.classList.toggle('motion-open', open); btn.setAttribute('aria-expanded', String(open)); };
   }
 })();
+
+/* Abertura/fechamento suave dos grupos do menu móvel */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !Element.prototype.animate) return;
+  document.querySelectorAll('#mm details.mm-g').forEach(function (d) {
+    var s = d.querySelector('summary'), c = d.querySelector('.mm-c');
+    if (!s || !c) return;
+    s.addEventListener('click', function (e) {
+      e.preventDefault();
+      var a;
+      if (d.open) {
+        c.style.overflow = 'hidden';
+        a = c.animate([{ height: c.offsetHeight + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: 180, easing: 'ease' });
+        a.onfinish = function () { d.open = false; c.style.overflow = ''; };
+      } else {
+        d.open = true;
+        var h = c.offsetHeight;
+        c.style.overflow = 'hidden';
+        a = c.animate([{ height: '0px', opacity: 0 }, { height: h + 'px', opacity: 1 }], { duration: 180, easing: 'ease' });
+        a.onfinish = function () { c.style.overflow = ''; };
+      }
+    });
+  });
+})();
