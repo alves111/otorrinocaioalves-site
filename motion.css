@@ -1,14 +1,35 @@
-/* Acabamento discreto aprovado: sem alterar fontes ou layout. */
+/* Movimentos v2: abertura em sequência + cascata de cards. Sem loops. */
 @media (prefers-reduced-motion: no-preference) {
+  /* Abertura da home: cada item entra em sequência */
+  @keyframes m2Rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+  @keyframes m2Wipe { from { opacity: 0; clip-path: inset(0 100% 0 0); transform: scale(.94); } 35% { opacity: 1; } to { opacity: 1; clip-path: inset(0 0 0 0); transform: none; } }
+  .hero-simbolo { animation: m2Wipe 950ms cubic-bezier(.3,.6,.2,1) both; }
+  .hero-nome { animation: m2Rise 750ms cubic-bezier(.2,.7,.2,1) 380ms both; }
+  .hero-especialidade { animation: m2Rise 700ms cubic-bezier(.2,.7,.2,1) 540ms both; }
+  .hero-registro { animation: m2Rise 700ms cubic-bezier(.2,.7,.2,1) 660ms both; }
+  .hero-intro { animation: m2Rise 700ms cubic-bezier(.2,.7,.2,1) 780ms both; }
+  .hero-cta { animation: m2Rise 700ms cubic-bezier(.2,.7,.2,1) 950ms both; }
+
+  /* Rolagem: título do bloco sobe, cards entram um a um */
+  .motion-ready .m2-item { opacity: 0; transform: translateY(26px); transition: opacity 650ms cubic-bezier(.2,.7,.2,1), transform 650ms cubic-bezier(.2,.7,.2,1); }
+  .motion-ready .m2-item.m2-in { opacity: 1; transform: none; }
+  .motion-ready .minicard .mc-fig { overflow: hidden; border-radius: 14px 14px 0 0; }
+  .motion-ready .m2-item .mc-fig img { transform: scale(1.07); transition: transform 1100ms cubic-bezier(.2,.7,.2,1); }
+  .motion-ready .m2-item.m2-in .mc-fig img { transform: none; }
+
+  /* Toque e passagem do mouse */
   .motion-ready .hero-cta, .motion-ready .btn, .motion-ready nav a, .motion-ready .hamburger { transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease; }
-  .motion-ready .hero-cta:hover, .motion-ready .cta-menu:hover { transform: translateY(-2px); box-shadow: 0 6px 16px #173c4a24; }
-  .motion-ready .motion-reveal { opacity: 0; transform: translateY(12px); transition: opacity 420ms ease, transform 420ms ease; }
-  .motion-ready .motion-reveal.motion-seen { opacity: 1; transform: none; }
-  .motion-ready .mobile-menu.motion-open { animation: menuIn 180ms ease-out both; }
-  @keyframes menuIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+  .motion-ready .hero-cta:hover, .motion-ready .cta-menu:hover { transform: translateY(-2px); box-shadow: 0 6px 16px #173c4a30; }
+  .motion-ready .hero-cta:active, .motion-ready .btn:active, .motion-ready .cta-menu:active, .motion-ready .hamburger:active, .motion-ready .cta-mm:active { transform: scale(.96); }
+  .motion-ready .minicard.m2-in, .motion-ready .stat.m2-in { transition: opacity 650ms cubic-bezier(.2,.7,.2,1), transform 260ms ease, box-shadow 260ms ease; }
+  .motion-ready .minicard.m2-in:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(23,60,74,.12); }
+  .motion-ready .drop:hover .drop-menu, .motion-ready .drop:focus-within .drop-menu { animation: m2Drop 180ms ease-out both; }
+  @keyframes m2Drop { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  .motion-ready .mobile-menu.motion-open { animation: m2Menu 240ms cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes m2Menu { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
-  .motion-reveal { opacity: 1 !important; transform: none !important; }
-  .motion-ready *, .motion-ready *::before, .motion-ready *::after { animation: none !important; transition: none !important; }
+  .m2-item { opacity: 1 !important; transform: none !important; }
+  .hero *, .motion-ready * { animation: none !important; transition: none !important; }
 }

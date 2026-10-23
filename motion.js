@@ -1,43 +1,24 @@
 (() => {
   'use strict';
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let observer;
-  const showAll = () => {
-    if (observer) observer.disconnect();
-    document.querySelectorAll('.motion-reveal').forEach(el => el.classList.add('motion-seen'));
-  };
   document.body.classList.add('motion-ready');
+  let io;
+  const showAll = () => { if (io) io.disconnect(); document.querySelectorAll('.m2-item').forEach(el => el.classList.add('m2-in')); };
   if (!reduced.matches && 'IntersectionObserver' in window) {
-    observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('motion-seen');
-        observer.unobserve(entry.target);
-      }
-    }), { threshold: 0.08 });
-    const sections = document.querySelectorAll('main .secao');
-    const blocks = sections.length ? sections : document.querySelectorAll('main .card');
-    blocks.forEach(el => {
-      if (!el.contains(document.activeElement) || document.activeElement === document.body) {
-        el.classList.add('motion-reveal');
-        observer.observe(el);
-      }
+    io = new IntersectionObserver(entries => {
+      const vis = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left);
+      vis.forEach((e, i) => { e.target.style.transitionDelay = Math.min(i, 5) * 90 + 'ms'; e.target.classList.add('m2-in'); io.unobserve(e.target); });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('main .secao > h2, main .secao > .secao-sub, main .minicard, main .stat, main .card, main .depo, main .banda-in > h2, main .avalie-google').forEach(el => {
+      if (el.contains(document.activeElement) && document.activeElement !== document.body) return;
+      el.classList.add('m2-item'); io.observe(el);
     });
-    document.addEventListener('focusin', event => {
-      const block = event.target.closest('.motion-reveal');
-      if (block) block.classList.add('motion-seen');
-    });
+    document.addEventListener('focusin', e => { const b = e.target.closest('.m2-item'); if (b) b.classList.add('m2-in'); });
   }
-  reduced.addEventListener('change', event => { if (event.matches) showAll(); });
-  const menuButton = document.getElementById('hamb');
-  const menu = document.getElementById('mm');
-  if (menuButton && menu) {
-    menuButton.setAttribute('aria-controls', 'mm');
-    menuButton.setAttribute('aria-expanded', 'false');
-    menuButton.onclick = () => {
-      const open = menu.style.display !== 'block';
-      menu.style.display = open ? 'block' : 'none';
-      menu.classList.toggle('motion-open', open);
-      menuButton.setAttribute('aria-expanded', String(open));
-    };
+  reduced.addEventListener('change', e => { if (e.matches) showAll(); });
+  const btn = document.getElementById('hamb'), menu = document.getElementById('mm');
+  if (btn && menu) {
+    btn.setAttribute('aria-controls', 'mm'); btn.setAttribute('aria-expanded', 'false');
+    btn.onclick = () => { const open = menu.style.display !== 'block'; menu.style.display = open ? 'block' : 'none'; menu.classList.toggle('motion-open', open); btn.setAttribute('aria-expanded', String(open)); };
   }
 })();
