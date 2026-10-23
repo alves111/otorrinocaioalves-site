@@ -76,7 +76,22 @@ main.conteudo { max-width: 820px; margin: 0 auto; padding: 30px 20px 10px; displ
 
 /* ---------- ilustrações ---------- */
 .fig { margin: 0 0 14px; }
-.fig img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 14px; display: block; }
+.fig img { width: 100%; height: auto; border-radius: 14px; display: block; }
+.fig video { width: 100%; border-radius: 14px; display: block; background: #000; }
+.fig.fig-foto img { aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; }
+.fig-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.fig-duo .fig { margin: 0; }
+.fig-cap { font-size: 12.5px; color: var(--texto-suave); margin: 8px 0 14px; text-align: center; }
+.grid-depo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.depo { margin: 0; background: #FBF7EF; border: 1px solid #E5DAC6; border-radius: 14px; padding: 26px 24px 20px; position: relative; }
+.depo::before { content: "\201C"; position: absolute; top: 2px; left: 16px; font-family: 'Cormorant Garamond', serif; font-size: 64px; color: #CD9569; line-height: 1; }
+.depo p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.18rem; line-height: 1.45; color: #2A3B42; margin: 14px 0 0; }
+.depo cite { display: block; margin-top: 12px; font-family: 'Montserrat', sans-serif; font-style: normal; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: #9A5F36; }
+.avalie-google { margin-top: 26px; background: var(--sand); border: 1px solid #E5DAC6; border-radius: 14px; padding: 24px 28px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+.avalie-google p { margin: 0; font-size: 1rem; color: #2A3B42; max-width: 60ch; }
+@media (max-width: 900px) { .grid-depo { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .grid-depo { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .fig-duo { grid-template-columns: 1fr; } }
 .fig.fig-foto img { aspect-ratio: 4 / 5; object-position: center top; }
 .fig figcaption { font-size: 12.5px; color: var(--texto-suave); margin-top: 8px; text-align: center; }
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: center; }
