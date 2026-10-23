@@ -177,5 +177,6 @@ footer p { margin: 4px 0; }
   .fatos > div { flex-direction: column; gap: 2px; }
   .fatos dt { flex: none; }
   .estudos { grid-template-columns: 1fr 1fr; }
+  .banda-stats .estudos { grid-template-columns: 1fr; }
   .stat .num { font-size: 26px; }
 }
