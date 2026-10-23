@@ -13,6 +13,13 @@
       if (el.contains(document.activeElement) && document.activeElement !== document.body) return;
       el.classList.add('m2-item'); io.observe(el);
     });
+    // Protecao: depois de rolar/saltar, mostra tudo que ficou acima ou dentro da tela e nao disparou.
+    let t;
+    const sweep = () => document.querySelectorAll('.m2-item:not(.m2-in)').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.92) { el.style.transitionDelay = '0ms'; el.classList.add('m2-in'); io.unobserve(el); }
+    });
+    window.addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(sweep, 160); }, { passive: true });
+    window.addEventListener('hashchange', () => setTimeout(sweep, 160));
     document.addEventListener('focusin', e => { const b = e.target.closest('.m2-item'); if (b) b.classList.add('m2-in'); });
   }
   reduced.addEventListener('change', e => { if (e.matches) showAll(); });
