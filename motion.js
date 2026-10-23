@@ -35,19 +35,19 @@
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !Element.prototype.animate) return;
   document.querySelectorAll('#mm details.mm-g').forEach(function (d) {
     var s = d.querySelector('summary'), c = d.querySelector('.mm-c');
-    if (!s || !c) return;
+    if (!s || !c || s.dataset.mmh) return;
+    s.dataset.mmh = '1';
     s.addEventListener('click', function (e) {
       e.preventDefault();
       c.getAnimations().forEach(function (a) { a.cancel(); });
       var hAtual = c.getBoundingClientRect().height;
       c.style.overflow = 'hidden';
       var ease = 'cubic-bezier(.4,0,.2,1)', dur = 240, a;
-      if (d.open && !d._closing) {
-        d._closing = true;
+      if (d.open) {
         a = c.animate([{ height: hAtual + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: dur, easing: ease });
-        a.onfinish = function () { d.open = false; d._closing = false; c.style.overflow = ''; a.cancel(); };
+        a.onfinish = function () { d.open = false; c.style.overflow = ''; a.cancel(); };
       } else {
-        d.open = true; d._closing = false;
+        d.open = true;
         var hFim = c.offsetHeight;
         a = c.animate([{ height: hAtual + 'px', opacity: .3 }, { height: hFim + 'px', opacity: 1 }], { duration: dur, easing: ease });
         a.onfinish = function () { c.style.overflow = ''; a.cancel(); };
