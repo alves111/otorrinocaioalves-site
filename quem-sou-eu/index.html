@@ -37,9 +37,15 @@
 </div>
 <div class="mobile-menu" id="mm">
 <a href="/">Início</a>
+<div class="mm-sec">Quem sou eu</div>
+<a href="/quem-sou-eu/" onclick="document.getElementById('mm').style.display='none'">Apresentação</a>
+<a href="/quem-sou-eu/#trajetoria" onclick="document.getElementById('mm').style.display='none'">Trajetória</a>
+<a href="/quem-sou-eu/#formacao" onclick="document.getElementById('mm').style.display='none'">Formação</a>
+<a href="/quem-sou-eu/#atuacao-e-pesquisa" onclick="document.getElementById('mm').style.display='none'">Atuação e pesquisa</a>
+<a href="/quem-sou-eu/#publicacoes" onclick="document.getElementById('mm').style.display='none'">Publicações mais recentes</a>
+<a href="/quem-sou-eu/#como-eu-trabalho" onclick="document.getElementById('mm').style.display='none'">Como eu trabalho</a>
 <div class="mm-sec">Doenças — ouvido e audição</div><a href="/doencas/colesteatoma/">Colesteatoma</a><a href="/doencas/otite/">Otite (infecção de ouvido)</a><a href="/doencas/otosclerose/">Otosclerose</a><a href="/doencas/perda-auditiva/">Perda de audição</a><a href="/doencas/perfuracao-do-timpano/">Perfuração do tímpano</a><a href="/doencas/tontura-e-vertigem/">Tontura e vertigem</a><a href="/doencas/zumbido/">Zumbido</a><div class="mm-sec">Doenças — nariz e respiração</div><a href="/doencas/desvio-de-septo/">Desvio de septo nasal</a><a href="/doencas/rinite-e-sinusite/">Rinite e sinusite</a><a href="/doencas/sinusite-cronica/">Sinusite crônica</a><div class="mm-sec">Doenças — garganta e voz</div><a href="/doencas/amigdalite-de-repeticao/">Amigdalite de repetição</a><a href="/doencas/lesoes-das-pregas-vocais/">Lesões das pregas vocais (rouquidão)</a><a href="/doencas/refluxo-laringofaringeo/">Refluxo laringofaríngeo</a><div class="mm-sec">Doenças — sono e saúde da criança</div><a href="/doencas/adenoide-e-respiracao-infantil/">Adenoide e respiração infantil</a><a href="/doencas/ronco-e-apneia/">Ronco e apneia do sono</a>
 <div class="mm-sec">Cirurgias — ouvido</div><a href="/cirurgias/estapedotomia/">Estapedotomia (otosclerose)</a><a href="/cirurgias/timpanoplastia/">Timpanoplastia (tímpano)</a><a href="/cirurgias/mastoidectomia/">Mastoidectomia (colesteatoma)</a><a href="/cirurgias/tubo-de-ventilacao/">Tubo de ventilação</a><div class="mm-sec">Cirurgias — nariz e seios da face</div><a href="/cirurgias/cirurgia-de-sinusite/">Cirurgia de sinusite</a><a href="/cirurgias/septoplastia/">Septoplastia (septo nasal)</a><a href="/cirurgias/turbinoplastia/">Turbinoplastia (cornetos)</a><div class="mm-sec">Cirurgias — garganta e sono</div><a href="/cirurgias/amigdalas-e-adenoides/">Amigdalas e adenoides</a><a href="/cirurgias/faringoplastia/">Faringoplastia (ronco e apneia)</a>
-<a href="/quem-sou-eu/">Quem sou eu</a>
 <a class="cta-mm" href="/agendar/">Como agendar a consulta</a>
 </div></header>
 <section class="pagehero"><div class="pagehero-in">
@@ -49,13 +55,13 @@
 </div></section>
 <main class="conteudo">
 
-<div class="card"><div class="split"><div>
+<div class="card" id="trajetoria"><div class="split"><div>
 <h2>Trajetória</h2>
 <p>Sou médico pela Universidade Federal do Amazonas (UFAM), com residência médica em Otorrinolaringologia pela Fundação Hospital Adriano Jorge (FHAJ) e fellowship em Otologia e Otoneurologia pelo Instituto Gaúcho de Otorrinolaringologia (IGO).</p>
 <p>Também sou <strong>mestre em Medicina: Ciências Cirúrgicas pela UFRGS</strong>, com dissertação sobre os resultados da estapedotomia, procedimento utilizado no tratamento da perda auditiva causada pela otosclerose.</p>
 <p>Gosto de explicar cada caso com calma: o que está acontecendo, quais são as opções e o que esperar de cada uma.</p>
 </div><figure class="fig fig-foto"><img src="/assets/v2/foto-dr-caio.webp" alt="Foto do Dr. Caio Alves, otorrinolaringologista em Porto Alegre"></figure></div></div>
-<div class="card"><h2>Formação</h2>
+<div class="card" id="formacao"><h2>Formação</h2>
 <ul>
 <li><strong>Graduação em Medicina</strong> — Universidade Federal do Amazonas (UFAM, 2012–2018);</li>
 <li><strong>Oficial Médico da Marinha do Brasil</strong> — Policlínica Naval de Manaus (2018–2019);</li>
@@ -64,7 +70,7 @@
 <li><strong>Fellowship em Otologia e Otoneurologia</strong> — Instituto Gaúcho de Otorrinolaringologia, IGO, Porto Alegre (2023);</li>
 <li><strong>Mestrado em Medicina: Ciências Cirúrgicas</strong> — UFRGS / Hospital de Clínicas de Porto Alegre, com pesquisa em estapedotomia (2026).</li>
 </ul></div>
-<div class="card"><h2>Atuação e pesquisa</h2>
+<div class="card" id="atuacao-e-pesquisa"><h2>Atuação e pesquisa</h2>
 <div class="split"><div>
 <ul>
 <li>Corpo clínico dos hospitais Mãe de Deus, Ernesto Dornelles, Divina Providência, Humaniza e Regina, e da Doctor Clin;</li>
@@ -73,11 +79,11 @@
 <li>Pesquisa e ensino em cirurgia otológica.</li>
 </ul>
 </div><figure class="fig"><img src="/assets/v2/foto-defesa-mestrado.webp" alt="Dr. Caio Alves apertando a mão de um membro da banca na defesa da dissertação de mestrado" loading="lazy"><figcaption>Defesa da dissertação de mestrado (UFRGS/HCPA)</figcaption></figure></div></div>
-<div class="card"><h2>Publicações mais recentes</h2>
+<div class="card" id="publicacoes"><h2>Publicações mais recentes</h2>
 <ul>
 <li>Costa SS, Treister NS, Alves CEM. Ototoxicity in Cancer Therapies. Oral Diseases. 2025;31(9):2769-2775. <a href="https://doi.org/10.1111/odi.70046" target="_blank" rel="noopener">doi:10.1111/odi.70046</a> · <a href="https://orcid.org/0000-0003-1972-5573" target="_blank" rel="noopener">ORCID 0000-0003-1972-5573</a></li>
 </ul></div>
-<div class="card"><div class="split"><div>
+<div class="card" id="como-eu-trabalho"><div class="split"><div>
 <h2>Como eu trabalho</h2>
 <p>A consulta começa com uma conversa para compreender seus sintomas, sua evolução e o impacto na sua rotina. Em seguida, realizo o exame físico e explico os resultados da avaliação, esclarecendo suas dúvidas. Com essas informações, conversamos sobre as opções e decidimos juntos o melhor tratamento para você. Tudo com muita atenção, respeito e clareza em cada etapa.</p>
 </div><figure class="fig"><img src="/assets/v2/il2-explicacao-consulta.webp" alt="Ilustração do médico explicando um modelo de ouvido à paciente durante a consulta" loading="lazy"><figcaption>Ilustração: a consulta</figcaption></figure></div></div>

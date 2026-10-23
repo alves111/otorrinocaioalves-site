@@ -122,6 +122,7 @@ main.conteudo { max-width: 820px; margin: 0 auto; padding: 30px 20px 10px; displ
 
 details.faq { border-bottom: 1px solid var(--borda); padding: 4px 0; }
 details.faq:last-child { border-bottom: none; }
+.card[id] { scroll-margin-top: 92px; }
 details.faq summary { cursor: pointer; font-weight: 600; font-size: 15px; color: var(--petrol); padding: 12px 0; list-style: none; }
 details.faq summary::before { content: "+"; color: var(--copper); font-weight: 700; margin-right: 10px; }
 details.faq[open] summary::before { content: "−"; }
