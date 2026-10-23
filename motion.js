@@ -38,17 +38,19 @@
     if (!s || !c) return;
     s.addEventListener('click', function (e) {
       e.preventDefault();
-      var a;
-      if (d.open) {
-        c.style.overflow = 'hidden';
-        a = c.animate([{ height: c.offsetHeight + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: 180, easing: 'ease' });
-        a.onfinish = function () { d.open = false; c.style.overflow = ''; };
+      if (d._anim) d._anim.cancel();
+      var hAtual = c.getBoundingClientRect().height;
+      c.style.overflow = 'hidden';
+      var ease = 'cubic-bezier(.4,0,.2,1)', dur = 240;
+      if (d.open && !d._closing) {
+        d._closing = true;
+        d._anim = c.animate([{ height: hAtual + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: dur, easing: ease });
+        d._anim.onfinish = function () { d.open = false; d._closing = false; d._anim = null; c.style.overflow = ''; };
       } else {
-        d.open = true;
-        var h = c.offsetHeight;
-        c.style.overflow = 'hidden';
-        a = c.animate([{ height: '0px', opacity: 0 }, { height: h + 'px', opacity: 1 }], { duration: 180, easing: 'ease' });
-        a.onfinish = function () { c.style.overflow = ''; };
+        d.open = true; d._closing = false;
+        var hFim = c.offsetHeight;
+        d._anim = c.animate([{ height: hAtual + 'px', opacity: .3 }, { height: hFim + 'px', opacity: 1 }], { duration: dur, easing: ease });
+        d._anim.onfinish = function () { d._anim = null; c.style.overflow = ''; };
       }
     });
   });
