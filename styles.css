@@ -169,6 +169,7 @@ details.faq .faq-a { padding: 0 0 14px 22px; font-size: 14.5px; color: var(--tex
 footer { background: var(--petrol-escuro); color: #9FB4BC; margin-top: 34px; padding: 30px 20px 34px; text-align: center; font-size: 12.5px; }
 footer .f-crm { color: #D8E2E6; font-weight: 600; font-size: 13px; margin-bottom: 6px; }
 footer a { color: var(--copper-claro); }
+footer a.f-priv { color: inherit; font-weight: inherit; text-decoration: underline; text-underline-offset: 2px; }
 footer p { margin: 4px 0; }
 
 @media (max-width: 860px) {
