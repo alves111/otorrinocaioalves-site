@@ -1,20 +1,15 @@
-/* Medicao de visitas (Umami): sanitiza antes de qualquer envio.
-   Nunca saem do navegador: caminho real da pagina, titulo, query, hash, referrer completo. */
+/* Medicao de visitas (Umami): limpa o que sai do navegador antes de qualquer envio.
+   Envia o caminho da pagina (sem query nem hash) e o site de origem (so o dominio).
+   Nao envia titulo da pagina, idioma nem tamanho de tela. */
 (function () {
   'use strict';
-  var CATS = [
-    [/^\/(index\.html)?$/, 'inicio'],
-    [/^\/agendar(\/|$)/, 'agendamento'],
-    [/^\/quem-sou-eu(\/|$)/, 'sobre'],
-    [/^\/doencas(\/|$)/, 'conteudo-informativo'],
-    [/^\/cirurgias(\/|$)/, 'conteudo-informativo']
-  ];
-  function cat(p) { for (var i = 0; i < CATS.length; i++) if (CATS[i][0].test(p)) return CATS[i][1]; return 'outros'; }
   window.umamiBeforeSend = function (type, payload) {
     try {
-      var u = new URL(payload.url, location.origin), c = cat(u.pathname);
-      payload.url = location.origin + '/' + c + '/';
-      payload.title = c;
+      var u = new URL(payload.url, location.origin);
+      payload.url = location.origin + u.pathname;
+      payload.title = '';
+      payload.language = '';
+      payload.screen = '';
       if (payload.referrer) { try { payload.referrer = new URL(payload.referrer).origin + '/'; } catch (e) { payload.referrer = ''; } }
       return payload;
     } catch (e) { return false; }
