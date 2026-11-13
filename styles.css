@@ -249,6 +249,8 @@ footer p { margin: 4px 0; }
 .car-page { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-content: start; }
 .car-page .depo { min-width: 0; }
 .car-page .depo p { font-size: 1.05rem; }
+
+@media (min-width: 601px) { .car-page .depo.longa { grid-row: span 2; } }
 .car-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 14px; }
 .car-btn { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--borda); background: #FBF7EF; color: var(--copper); font-size: 20px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0 0 2px; }
 .car-btn:hover { background: var(--sand); }
