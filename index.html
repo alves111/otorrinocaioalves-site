@@ -148,14 +148,23 @@
   if (!track) return;
   var prev = document.getElementById('car-prev'), next = document.getElementById('car-next'),
       dots = document.getElementById('car-dots');
-  var slides = track.children, timer = null, i = 0;
+  var slides = Array.prototype.slice.call(track.children), timer = null, i = 0;
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  function per() { return window.innerWidth <= 600 ? 1 : window.innerWidth <= 900 ? 2 : 3; }
-  function pages() { return Math.ceil(slides.length / per()); }
-  function pageW() { return track.clientWidth; }
+  function per() { return window.innerWidth <= 600 ? 2 : 6; }
+  function pages() { return track.children.length; }
+  function build() {
+    var frag = document.createDocumentFragment(), n = per();
+    for (var k = 0; k < slides.length; k += n) {
+      var pg = document.createElement('div');
+      pg.className = 'car-page';
+      slides.slice(k, k + n).forEach(function (sl) { pg.appendChild(sl); });
+      frag.appendChild(pg);
+    }
+    track.innerHTML = ''; track.appendChild(frag);
+  }
   function go(p) {
     var n = pages(); p = ((p % n) + n) % n; i = p;
-    track.scrollTo({ left: p * pageW(), behavior: reduced.matches ? 'auto' : 'smooth' });
+    track.scrollTo({ left: p * track.clientWidth, behavior: reduced.matches ? 'auto' : 'smooth' });
     draw();
   }
   function draw() {
@@ -170,26 +179,37 @@
     fit();
   }
   function fit() {
-    var idx = Math.min(i * per(), slides.length - 1), h = 0;
-    for (var j = idx; j < Math.min(idx + per(), slides.length); j++) h = Math.max(h, slides[j].offsetHeight);
+    var pg = track.children[i];
+    if (!pg) return;
+    for (var k = 0; k < track.children.length; k++) {
+      if (track.children[k] !== pg) track.children[k].style.display = 'none';
+    }
+    track.style.height = '';
+    var h = pg.offsetHeight;
     track.style.height = (h + 6) + 'px';
+    for (k = 0; k < track.children.length; k++) track.children[k].style.display = '';
+    track.scrollLeft = i * track.clientWidth;
   }
   function stop() { if (timer) { clearInterval(timer); timer = null; } }
   function start() {
     stop();
     if (reduced.matches) return;
-    timer = setInterval(function () { go(i + 1); }, 6000);
+    timer = setInterval(function () { go(i + 1); }, 7000);
   }
   function restart() { stop(); start(); }
   prev.onclick = function () { go(i - 1); restart(); };
   next.onclick = function () { go(i + 1); restart(); };
   ['pointerenter', 'focusin', 'touchstart'].forEach(function (ev) { track.addEventListener(ev, stop, { passive: true }); });
   ['pointerleave', 'focusout', 'touchend'].forEach(function (ev) { track.addEventListener(ev, start, { passive: true }); });
-  window.addEventListener('resize', function () { draw(); }, { passive: true });
+  var lastPer = per();
+  window.addEventListener('resize', function () {
+    if (per() !== lastPer) { lastPer = per(); var first = i * (lastPer === 6 ? 2 : 6); build(); i = Math.floor(first / per()); }
+    draw();
+  }, { passive: true });
   window.addEventListener('load', fit);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   reduced.addEventListener('change', function () { restart(); });
-  draw(); start();
+  build(); draw(); start();
 })();
 </script>
 </body>
